@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
 /**
@@ -91,13 +92,13 @@ class User extends Authenticatable
         'last_name' => 'nullable|string|max:255',
         'username' => 'nullable|string|max:255',
         'phone_no' => 'required|integer',
-        'email' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
         'password' => 'required|string|max:255',
         'user_type' => 'nullable|string|max:255',
         'terms_and_condition' => 'required|boolean',
         'otp' => 'nullable|integer',
         'account_usage' => 'nullable|string|max:255',
-        'account_status' => 'required|boolean',
+        'account_status' => 'nullable|boolean',
         'email_verified_at' => 'nullable',
         'remember_token' => 'nullable|string|max:100',
         'created_at' => 'nullable',

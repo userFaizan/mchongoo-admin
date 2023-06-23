@@ -9,6 +9,8 @@ return array(
     'App\\Console\\Commands\\CreateModelsForDbs' => $baseDir . '/app/Console/Commands/CreateModelsForDbs.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Api\\ApiBaseController' => $baseDir . '/app/Http/Controllers/Api/ApiBaseController.php',
+    'App\\Http\\Controllers\\Api\\RegisterController' => $baseDir . '/app/Http/Controllers/Api/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
     'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => $baseDir . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
