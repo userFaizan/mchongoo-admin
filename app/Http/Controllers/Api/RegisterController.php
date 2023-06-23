@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\ApiBaseController as ApiBaseController;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -26,27 +27,27 @@ class RegisterController extends ApiBaseController
             // Check if email already exists
             $existingUser = User::where('email', $input['email'])->first();
             if ($existingUser) {
-                return $this->sendError('Email already exists. Please use a different email address.' ,[], 404);
+                return $this->sendError('Email already exists. Please use a different email address.', [], 404);
             }
             $input['password'] = bcrypt($input['password']);
             $user = User::create($input);
-            $success['token'] =  $user->createToken('MyApp')->accessToken;
-            $success['first_name'] =  $user->first_name;
-            $success['last_name'] =  $user->last_name;
-            $success['username'] =  $user->username;
-            $success['phone_no'] =  $user->phone_no;
-            $success['email'] =  $user->email;
+            $success['token'] = $user->createToken('MyApp')->accessToken;
+            $success['first_name'] = $user->first_name;
+            $success['last_name'] = $user->last_name;
+            $success['username'] = $user->username;
+            $success['phone_no'] = $user->phone_no;
+            $success['email'] = $user->email;
 
             return $this->sendResponse($success, 'User registered successfully.');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Handle the exception
-            return $this->sendError('Error occurred during registration.' ,[], 404);
+            return $this->sendError('Error occurred during registration.', [], 404);
 
         }
     }
 
 
-    public  function generateOtp(Request $request)
+    public function generateOtp(Request $request)
     {
         try {
             $validation = Validator::make($request->all(), [
@@ -62,24 +63,24 @@ class RegisterController extends ApiBaseController
             $user = User::where('email', $email)->first();
             $user->otp = $otp;
             $user->save();
-        return $this->sendResponse([], 'Otp Genrated successfully.');
-        } catch (\Exception $e) {
-    // Handle the exception
-            return $this->sendError('Error occurred during generateOtp.' ,[], 404);
-       }
+            return $this->sendResponse([], 'Otp Genrated successfully,Kindly check your Email');
+        } catch (Exception $e) {
+            // Handle the exception
+            return $this->sendError('Error occurred during generateOtp.', [], 404);
+        }
     }
 
 
-    public function matchOtp (Request $request)
+    public function matchOtp(Request $request)
     {
         try {
-        $validation = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'otp' => 'required',
-        ]);
-        if ($validation->fails()) {
-            return $this->sendError('Validation Error.', $validation->errors());
-        }
+            $validation = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'otp' => 'required',
+            ]);
+            if ($validation->fails()) {
+                return $this->sendError('Validation Error.', $validation->errors());
+            }
             $email = $request->input('email');
             $otp = $request->input('otp');
 
@@ -94,15 +95,15 @@ class RegisterController extends ApiBaseController
 
             } else {
                 // OTP does not match or user not found, return an error response
-                return $this->sendError('Invalid OTP.' ,[], 404);
+                return $this->sendError('Invalid OTP.', [], 404);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Handle the exception
-            return $this->sendError('Error occurred during matchOtp.' ,[], 404);
+            return $this->sendError('Error occurred during matchOtp.', [], 404);
         }
     }
 
-    public function resendOtp (Request $request)
+    public function resendOtp(Request $request)
     {
         try {
             $validation = Validator::make($request->all(), [
@@ -112,24 +113,24 @@ class RegisterController extends ApiBaseController
                 return $this->sendError('Validation Error.', $validation->errors());
             }
             $email = $request->input('email');
-            $user = User::where('email',$email)->first();
+            $user = User::where('email', $email)->first();
             if ($user) {
                 $otp = $user->otp;
                 Mail::to($email)->send(new OtpMail($otp));
                 return $this->sendResponse([], 'Otp Resend successfully.');
 
-            }else{
-                return $this->sendError('User not Found' ,[], 404);
+            } else {
+                return $this->sendError('User not Found', [], 404);
 
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Handle the exception
-            return $this->sendError('Error occurred during resendOtp.' ,[], 404);
+            return $this->sendError('Error occurred during resendOtp.', [], 404);
         }
     }
 
-    public function updateaccountUsage (Request $request)
+    public function updateaccountUsage(Request $request)
     {
         try {
             $validation = Validator::make($request->all(), [
@@ -142,18 +143,18 @@ class RegisterController extends ApiBaseController
             $email = $request->input('email');
             $accountUsage = $request->input('account_usage');
 
-            $user = User::where('email',$email)->first();
-            if ($user){
-                $user->account_usage =$accountUsage;
+            $user = User::where('email', $email)->first();
+            if ($user) {
+                $user->account_usage = $accountUsage;
                 $user->save();
                 return $this->sendResponse([], 'Account Usage Updated successfully.');
 
-            }else{
-                return $this->sendError('User not Found' ,[], 404);
+            } else {
+                return $this->sendError('User not Found', [], 404);
 
             }
-        }catch (\Exception $e){
-            return $this->sendError('Error occurred during Update Account Usage.' ,[], 404);
+        } catch (Exception $e) {
+            return $this->sendError('Error occurred during Update Account Usage.', [], 404);
 
         }
     }
