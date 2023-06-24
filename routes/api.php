@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('register',[RegisterController::class,'register'])->name('register');
-Route::post('generateOtp',[RegisterController::class,'generateOtp'])->name('generateOtp');
-Route::post('matchOtp',[RegisterController::class,'matchOtp'])->name('matchOtp');
-Route::post('resendOtp',[RegisterController::class,'resendOtp'])->name('resendOtp');
-Route::post('accountUsage',[RegisterController::class,'updateaccountUsage'])->name('updateaccountUsage');
+Route::post('register',[RegisterController::class,'register']);
+Route::post('login', [RegisterController::class, 'login']);
+Route::post('generateOtp',[RegisterController::class,'generateOtp']);
+Route::post('matchOtp',[RegisterController::class,'matchOtp']);
+Route::post('resendOtp',[RegisterController::class,'resendOtp']);
+Route::post('accountUsage',[RegisterController::class,'updateaccountUsage']);
+Route::post('uploadKYC',[RegisterController::class,'uploadKYC']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});

@@ -39,7 +39,7 @@ class CreateModelsForDbs extends Command
     public function handle () : int
     {
         $calls = [
-            'User' => ['table' => 'users' , 'prefix' => false] ,
+            'UserKYC' => ['table' => 'user_kyc_documents' , 'prefix' => false] ,
 
         ];
         foreach($calls as $model => $call) {

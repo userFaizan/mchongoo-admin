@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\ApiBaseController as ApiBaseController;
 use App\Models\User;
+use App\Models\UserKYC;
 use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OtpMail;
+use Illuminate\Support\Facades\Auth;
 
 
 class RegisterController extends ApiBaseController
@@ -45,7 +47,33 @@ class RegisterController extends ApiBaseController
 
         }
     }
+    /**
+     * Login api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
+    {
+        try {
 
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+            $user = Auth::user();
+            $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            $success['first_name'] = $user->first_name;
+            $success['last_name'] = $user->last_name;
+            $success['username'] = $user->username;
+            $success['phone_no'] = $user->phone_no;
+            $success['email'] = $user->email;
+            return $this->sendResponse($success, 'User login successfully.');
+        }
+        else{
+            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+        }
+        } catch (Exception $e) {
+            // Handle the exception
+            return $this->sendError('Error occurred during Login.', [], 404);
+        }
+    }
 
     public function generateOtp(Request $request)
     {
@@ -88,9 +116,7 @@ class RegisterController extends ApiBaseController
             $user = User::where('email', $email)->first();
 
             if ($user && $user->otp == $otp) {
-//                // OTP matched, perform the necessary actions
-//                $user->otp = null; // Clear the OTP after successful verification
-//                $user->save();
+
                 return $this->sendResponse([], 'OTP matched successfully.');
 
             } else {
@@ -155,6 +181,38 @@ class RegisterController extends ApiBaseController
             }
         } catch (Exception $e) {
             return $this->sendError('Error occurred during Update Account Usage.', [], 404);
+
+        }
+    }
+    public function uploadKYC (Request $request)
+    {
+        try {
+            $validation = Validator::make($request->all(), UserKYC::$rules);
+
+            if ($validation->fails()) {
+                return $this->sendError('Validation Error.', $validation->errors());
+            }
+            $email = $request->input('email');
+            $user = User::where('email',$email)->first();
+            if ($user)
+            {
+                UserKYC::updateOrCreate(
+                    ['user_id' => $user->id],
+                    [
+                        'logo' => $request->input('logo'),
+                        'business_registration' => $request->input('business_registration'),
+                        'business_license' => $request->input('business_license'),
+                    ]
+                );
+                return $this->sendResponse([], 'User KYC Document Uploaded successfully.');
+
+            }else {
+                return $this->sendError('User not Found', [], 404);
+
+            }
+
+        } catch (Exception $e) {
+            return $this->sendError('Error occurred during Uploading KYC Document.', [], 404);
 
         }
     }
