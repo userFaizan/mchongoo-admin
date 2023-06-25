@@ -2,7 +2,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="index.html"><img src="{{asset('assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
+        <a href="index.html"><img src="{{asset('assets/images/logo.jpeg')}}" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -18,20 +18,18 @@
             <li class="active open"><a href="{{route('dashboard')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>User</span></a>
                 <ul class="ml-menu">
-                    <li><a href="#">Add Users</a></li>
-                    <li><a href="#">All Users</a></li>
+{{--                    <li><a href="#">Add Users</a></li>--}}
+                    <li><a href="{{route('user.index')}}">All Users</a></li>
 {{--                    <li><a href="events.html">Calendar</a></li>--}}
 {{--                    <li><a href="contact.html">Contact</a></li>--}}
                 </ul>
             </li>
-{{--            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Projects</span></a>--}}
-{{--                <ul class="ml-menu">--}}
-{{--                    <li><a href="project-list.html">Projects List</a></li>--}}
-{{--                    <li><a href="taskboard.html">Taskboard</a></li>--}}
-{{--                    <li><a href="ticket-list.html">Ticket List</a></li>--}}
-{{--                    <li><a href="ticket-detail.html">Ticket Detail</a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Skills</span></a>
+                <ul class="ml-menu">
+                    <li><a href="{{route('skill.index')}}">Skills List</a></li>
+                    <li><a href="{{route('skill.create')}}">Add Skills</a></li>
+                </ul>
+            </li>
 {{--            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder"></i><span>File Manager</span></a>--}}
 {{--                <ul class="ml-menu">--}}
 {{--                    <li><a href="file-dashboard.html">All File</a></li>--}}

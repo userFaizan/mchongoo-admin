@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="description" content="Mchongoo">
     <title>:: Mchongoo:: Home</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+    <link rel="icon" href="{{asset('assets/images/logo.jpeg')}}" type="image/x-icon"> <!-- Favicon-->
     <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/plugins/charts-c3/plugin.css')}}"/>
@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.min.css')}}" />
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
 </head>
 
 <body class="theme-blush">

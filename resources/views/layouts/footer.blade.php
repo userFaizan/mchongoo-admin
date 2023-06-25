@@ -8,6 +8,12 @@
 
 <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
 <script src="{{asset('assets/js/pages/index.js')}}"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+<script src="{{asset('assets/js/mchongoo.js')}}"></script>
+
+
 </body>
 
 

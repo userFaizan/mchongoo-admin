@@ -90,7 +90,7 @@
                 <form   method="POST" action="{{ route('login') }}" class="card auth_form">
                     @csrf
                     <div class="header">
-                        <img class="logo" src="{{asset('assets/images/logo.svg')}}" alt="">
+                        <img class="logo" src="{{asset('assets/images/logo.jpeg')}}" alt="">
                         <h5>Log in</h5>
                     </div>
                     <div class="body">
@@ -122,7 +122,7 @@
                 <div class="copyright text-center">
                     &copy;
                     <script>document.write(new Date().getFullYear())</script>,
-                                        <span><a href="templatespoint.net">Templates Point</a></span>
+                                        <span><a href="#">Mchongoo</a></span>
                 </div>
             </div>
             <div class="col-lg-8 col-sm-12">
