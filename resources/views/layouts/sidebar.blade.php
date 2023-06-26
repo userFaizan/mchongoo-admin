@@ -38,15 +38,12 @@
 {{--                    <li><a href="file-media.html">Media</a></li>--}}
 {{--                </ul>--}}
 {{--            </li>--}}
-{{--            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>--}}
-{{--                <ul class="ml-menu">--}}
-{{--                    <li><a href="blog-dashboard.html">Dashboard</a></li>--}}
-{{--                    <li><a href="blog-post.html">Blog Post</a></li>--}}
-{{--                    <li><a href="blog-list.html">List View</a></li>--}}
-{{--                    <li><a href="blog-grid.html">Grid View</a></li>--}}
-{{--                    <li><a href="blog-details.html">Blog Details</a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Categories</span></a>
+                <ul class="ml-menu">
+                    <li><a href="{{route('category.index')}}">Categories List</a></li>
+                    <li><a href="{{route('category.create')}}">Add Category</a></li>
+                </ul>
+            </li>
 {{--            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Ecommerce</span></a>--}}
 {{--                <ul class="ml-menu">--}}
 {{--                    <li><a href="ec-dashboard.html">Dashboard</a></li>--}}

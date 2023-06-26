@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IntrestController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,15 @@ Route::middleware('auth')->group(function () {
         Route::post('{id}/edit', [IntrestController::class, 'update'])->name('update');
         Route::get('{id}/delete', [IntrestController::class, 'delete'])->name('delete');
         Route::get('changeStatus', [IntrestController::class,'changeStatus'])->name('changeStatus');
+    });
+    Route::prefix('/category/')->as('category.')->group(function () {
+        Route::get('', [CategoryController::class, 'index'])->name('index');
+        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+        Route::post('/store', [CategoryController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [CategoryController::class, 'edit'])->name('edit');
+        Route::post('{id}/edit', [CategoryController::class, 'update'])->name('update');
+        Route::get('{id}/delete', [CategoryController::class, 'delete'])->name('delete');
+        Route::get('changeStatus', [CategoryController::class,'changeStatus'])->name('changeStatus');
     });
 });
 require __DIR__.'/auth.php';

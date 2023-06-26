@@ -33,6 +33,23 @@ $(function() {
         });
     })
 })
+
+$(function() {
+    $('.toggle-class-2').change(function() {
+        let status = $(this).prop('checked') === true ? 1 : 0;
+        let category_id = $(this).data('id');
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: 'category/changeStatus',
+            data: {'status': status, 'category_id': category_id},
+            success: function(data){
+                console.log(data.success)
+            }
+        });
+    })
+})
 $(document).ready(function() {
     // Listen for form submission
     $('#ajax-request').submit(function(event) {

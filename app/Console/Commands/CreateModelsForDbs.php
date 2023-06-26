@@ -39,7 +39,7 @@ class CreateModelsForDbs extends Command
     public function handle () : int
     {
         $calls = [
-            'Intrest' => ['table' => 'intrest' , 'prefix' => false] ,
+            'Category' => ['table' => 'categories' , 'prefix' => false] ,
 
         ];
         foreach($calls as $model => $call) {
