@@ -106,5 +106,8 @@ class User extends Authenticatable
         'deleted_at' => 'nullable'
     ];
 
-    
+    public function interests()
+    {
+        return $this->belongsToMany(Intrest::class);
+    }
 }
