@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OtpMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class RegisterController extends ApiBaseController
@@ -186,7 +187,7 @@ class RegisterController extends ApiBaseController
     }
     public function uploadKYC (Request $request)
     {
-        try {
+//        try {
             $validation = Validator::make($request->all(), UserKYC::$rules);
 
             if ($validation->fails()) {
@@ -196,14 +197,32 @@ class RegisterController extends ApiBaseController
             $user = User::where('email',$email)->first();
             if ($user)
             {
-                UserKYC::updateOrCreate(
+                $userKyc = UserKYC::updateOrCreate(
                     ['user_id' => $user->id],
-                    [
-                        'logo' => $request->input('logo'),
-                        'business_registration' => $request->input('business_registration'),
-                        'business_license' => $request->input('business_license'),
-                    ]
+                    []
                 );
+                if ($request->hasFile('logo')) {
+                    $logo = $request->file('logo');
+                    $logoName = time() . '.' . $logo->getClientOriginalExtension();
+                    $logo->storeAs('public/userkyc', $logoName);
+                    $userKyc->logo = $logoName;
+                }
+
+                if ($request->hasFile('business_registration')) {
+                    $registration = $request->file('business_registration');
+                    $registrationName = time() . '.' . $registration->getClientOriginalExtension();
+                    $registration->storeAs('public/userkyc', $registrationName);
+                    $userKyc->business_registration = $registrationName;
+                }
+
+                if ($request->hasFile('business_license')) {
+                    $license = $request->file('business_license');
+                    $licenseName = time() . '.' . $license->getClientOriginalExtension();
+                    $license->storeAs('public/userkyc', $licenseName);
+                    $userKyc->business_license = $licenseName;
+                }
+
+                $userKyc->save();
                 return $this->sendResponse([], 'User KYC Document Uploaded successfully.');
 
             }else {
@@ -211,9 +230,9 @@ class RegisterController extends ApiBaseController
 
             }
 
-        } catch (Exception $e) {
-            return $this->sendError('Error occurred during Uploading KYC Document.', [], 404);
-
-        }
+//        } catch (Exception $e) {
+//            return $this->sendError('Error occurred during Uploading KYC Document.', [], 404);
+//
+//        }
     }
 }

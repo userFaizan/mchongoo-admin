@@ -33,6 +33,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>slug</th>
+                                    <th>Icon</th>
                                     <th>Status</th>
                                     <th>Action</th>
 
@@ -45,6 +46,8 @@
                                     <tr>
                                         <td>{{$item->name }}</td>
                                         <td>{{$item->slug}}</td>
+                                        <td>  <img src=" {{ asset('storage/interestImages/'. $item->icon) }}" alt="Interest Icon" width="50" height="50"></td>
+
                                         <td>
                                             <label class="switch">
                                                 <input type="checkbox" class="toggle-class-1" data-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }}>

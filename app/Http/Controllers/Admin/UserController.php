@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index ()
     {
-      $users = User::where('id', '!=',  Auth::id())->get();
+      $users = User::with('userKyc')->where('id', '!=',  Auth::id())->get();
       return view('admin.users.index',compact('users'));
     }
     public function changeStatus(Request $request)

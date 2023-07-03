@@ -60,9 +60,9 @@ class UserKYC extends Model
      */
     public static $rules = [
 
-        'logo' => 'nullable|string|max:255',
-        'business_registration' => 'nullable|string|max:255',
-        'business_license' => 'nullable|string|max:255',
+        'logo' => 'nullable',
+        'business_registration' => 'nullable',
+        'business_license' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

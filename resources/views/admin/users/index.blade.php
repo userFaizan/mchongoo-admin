@@ -35,6 +35,9 @@
                                     <th>email</th>
                                     <th>Phone no</th>
                                     <th>User Type</th>
+                                    <th>User Logo</th>
+                                    <th>User Business Registration</th>
+                                    <th>User Business License</th>
                                     <th>Account Usage</th>
                                     <th>Account Status</th>
 
@@ -50,6 +53,39 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone_no}}</td>
                                     <td>{{$user->user_type}}</td>
+                                    <td>
+                                        @foreach($user->userKyc as $doc)
+                                            @if($doc->logo)
+                                                <a href="{{ asset('storage/userkyc/' . $doc->logo) }}" target="_blank">View</a>
+                                            @else
+                                                No Logo
+                                            @endif
+                                        @endforeach
+
+                                    </td>
+                                    <td>
+                                        @foreach($user->userKyc as $doc)
+
+                                        @if($doc->business_registration)
+                                            <a href="{{ asset('storage/userkyc/' . $doc->business_registration) }}" target="_blank">View</a>
+                                        @else
+                                            No Business Registration
+                                        @endif
+                                        @endforeach
+
+                                    </td>
+                                    <td>
+                                        @foreach($user->userKyc as $doc)
+
+                                        @if($doc->business_license)
+                                            <a href="{{ asset('storage/userkyc/' . $doc->business_license) }}" target="_blank">View</a>
+                                        @else
+                                            No Business license
+                                        @endif
+                                        @endforeach
+
+                                    </td>
+
                                     <td>{{$user->account_usage}}</td>
                                     <td>
                                         <label class="switch">

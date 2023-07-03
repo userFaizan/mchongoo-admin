@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -28,12 +29,18 @@ class CategoryController extends Controller
         if ($validation->fails()) {
             return response($validation->errors()->first() , 419);
         }
-        Category::create([
-//            'icon' => $request->icon,
+        $data = [
             'name' => $request->name,
-            'slug' =>Str::slug($request->name, '-'),
+            'slug' => Str::slug($request->name, '-')
+        ];
 
-        ]);
+        if ($request->hasFile('icon')) {
+            $image = $request->file('icon');
+            $imageName = time() . '.' . $image->extension();
+            $image->storeAs('public/CategoryImages', $imageName);
+            $data['icon'] = $imageName;
+        }
+        Category::create($data);
         return response()->json(['success'=>'Category added Success Fully.']);
     }
     public function edit($id)
@@ -49,9 +56,15 @@ class CategoryController extends Controller
         if ($validation->fails()) {
             return redirect()->back()->withErrors($validation->errors())->withInput();
         }
+
         $category = Category::findOrFail($id);
-//        $intrest->icon = $request->icon;
         $category->name = $request->name;
+        if ($request->hasFile('icon')) {
+            $image = $request->file('icon');
+            $imageName = time().'.'.$image->extension();
+            $image->storeAs('public/CategoryImages', $imageName);
+            $category->icon = $imageName;
+        }
         $category->save();
         return response()->json(['success'=>'Category Updated Success Fully.']);
     }

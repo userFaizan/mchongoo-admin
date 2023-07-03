@@ -41,19 +41,19 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="row clearfix">--}}
-{{--                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">--}}
-{{--                                    <label for="icon">Icon</label>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-lg-10 col-md-10 col-sm-8">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <input type="file" id="icon" name="icon" class="form-control" placeholder="Enter your skill icon">--}}
-{{--                                        @error('icon')--}}
-{{--                                        <span class="text-danger">{{ $message }}</span>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="icon">Icon</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        <input type="file" id="icon" name="icon" class="form-control" placeholder="Enter your skill icon">
+                                        @error('icon')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row clearfix">
                                 <div class="col-sm-8 offset-sm-2">
 {{--                                    <button type="submit" class="btn btn-primary">Submit</button>--}}

@@ -59,7 +59,6 @@ class Intrest extends Model
      * @var array
      */
     public static $rules = [
-        'icon' => 'nullable|string|max:255',
         'name' => 'required|string|max:255',
         'slug' => 'nullable|string|max:255',
         'created_at' => 'nullable',
