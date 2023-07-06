@@ -37,7 +37,9 @@ class UserKYC extends Model
         'user_id',
         'logo',
         'business_registration',
-        'business_license'
+        'business_license',
+        'profile_photo',
+        'national_id'
     ];
 
     /**
@@ -63,6 +65,8 @@ class UserKYC extends Model
         'logo' => 'nullable',
         'business_registration' => 'nullable',
         'business_license' => 'nullable',
+        'profile_photo' => 'nullable',
+        'national_id' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

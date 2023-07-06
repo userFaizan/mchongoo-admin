@@ -56,6 +56,7 @@ class User extends Authenticatable
         'otp',
         'account_usage',
         'account_status',
+        'otp_verified',
         'email_verified_at',
         'remember_token'
     ];

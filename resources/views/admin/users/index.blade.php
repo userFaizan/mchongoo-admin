@@ -35,9 +35,11 @@
                                     <th>email</th>
                                     <th>Phone no</th>
                                     <th>User Type</th>
-                                    <th>User Logo</th>
-                                    <th>User Business Registration</th>
-                                    <th>User Business License</th>
+                                    <th>Logo</th>
+                                    <th>Business Registration</th>
+                                    <th>Business License</th>
+                                    <th>Profile Photo</th>
+                                    <th>National Id</th>
                                     <th>Account Usage</th>
                                     <th>Account Status</th>
 
@@ -82,6 +84,28 @@
                                         @else
                                             No Business license
                                         @endif
+                                        @endforeach
+
+                                    </td>
+                                    <td>
+                                        @foreach($user->userKyc as $doc)
+
+                                            @if($doc->profile_photo)
+                                                <a href="{{ asset('storage/userkyc/' . $doc->profile_photo) }}" target="_blank">View</a>
+                                            @else
+                                                No Profile Photo
+                                            @endif
+                                        @endforeach
+
+                                    </td>
+                                    <td>
+                                        @foreach($user->userKyc as $doc)
+
+                                            @if($doc->national_id)
+                                                <a href="{{ asset('storage/userkyc/' . $doc->national_id) }}" target="_blank">View</a>
+                                            @else
+                                                No National Id
+                                            @endif
                                         @endforeach
 
                                     </td>

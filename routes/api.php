@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\InterestController;
 use App\Http\Controllers\Api\RegisterController;
 use Illuminate\Http\Request;
@@ -22,6 +23,9 @@ Route::post('matchOtp',[RegisterController::class,'matchOtp']);
 Route::post('resendOtp',[RegisterController::class,'resendOtp']);
 Route::post('accountUsage',[RegisterController::class,'updateaccountUsage']);
 Route::post('uploadKYC',[RegisterController::class,'uploadKYC']);
+Route::post('forgetPassword',[RegisterController::class,'forgetPassword']);
+Route::post('resetPassword',[RegisterController::class,'resetPassword']);
+
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
@@ -29,6 +33,8 @@ Route::post('uploadKYC',[RegisterController::class,'uploadKYC']);
 Route::middleware('auth:api')->group(function () {
     Route::get('interest',[InterestController::class,'getInterest']);
     Route::post('interest',[InterestController::class,'storeInterest']);
+    Route::get('category',[CategoryController::class,'getCategory']);
+
 
 
 });
