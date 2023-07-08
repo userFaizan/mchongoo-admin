@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IntrestController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,14 @@ Route::middleware('auth')->group(function () {
         Route::post('{id}/edit', [CategoryController::class, 'update'])->name('update');
         Route::get('{id}/delete', [CategoryController::class, 'delete'])->name('delete');
         Route::get('changeStatus', [CategoryController::class,'changeStatus'])->name('changeStatus');
+    });
+    Route::prefix('/services/')->as('services.')->group(function () {
+        Route::get('', [ServiceController::class, 'index'])->name('index');
+        Route::get('/create', [ServiceController::class, 'create'])->name('create');
+        Route::post('/store', [ServiceController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [ServiceController::class, 'edit'])->name('edit');
+        Route::post('{id}/edit', [ServiceController::class, 'update'])->name('update');
+        Route::get('{id}/delete', [ServiceController::class, 'delete'])->name('delete');
     });
 });
 require __DIR__.'/auth.php';

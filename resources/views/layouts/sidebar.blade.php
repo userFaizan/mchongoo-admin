@@ -44,14 +44,12 @@
                     <li><a href="{{route('category.create')}}">Add Category</a></li>
                 </ul>
             </li>
-{{--            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Ecommerce</span></a>--}}
-{{--                <ul class="ml-menu">--}}
-{{--                    <li><a href="ec-dashboard.html">Dashboard</a></li>--}}
-{{--                    <li><a href="ec-product.html">Product</a></li>--}}
-{{--                    <li><a href="ec-product-List.html">Product List</a></li>--}}
-{{--                    <li><a href="ec-product-detail.html">Product detail</a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Services</span></a>
+                <ul class="ml-menu">
+                    <li><a href="{{route('services.index')}}">Services List</a></li>
+                    <li><a href="{{route('services.create')}}">Add Service</a></li>
+                </ul>
+            </li>
 {{--            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>Components</span></a>--}}
 {{--                <ul class="ml-menu">--}}
 {{--                    <li><a href="ui_kit.html">Aero UI KIT</a></li>--}}
