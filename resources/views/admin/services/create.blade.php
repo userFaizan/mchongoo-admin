@@ -31,7 +31,7 @@
                     <div class="body">
                         <form id="ajax-request" method="post" action="{{route('services.store')}}"
                               enctype="multipart/form-data" class="form-horizontal"
-                              data-redirect-url="{{ route('services.create') }}">
+                              data-redirect-url="{{ route('services.index') }}">
                             @csrf
 
                             <div class="row clearfix">
@@ -148,6 +148,63 @@
                                         <input type="file" name="images[]" id="inputImage" multiple
                                                class="form-control @error('images') is-invalid @enderror">
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="name">Select City</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <select name="city" id="city" class="form-control show-tick ms "
+                                                    aria-describedby="city" required>
+                                                <option value="" selected>Select city</option>
+                                                <option value="Dar es Salaam">Dar es Salaam</option>
+                                                <option value="Mwanza">Mwanza</option>
+                                                <option value="Mbeya">Mbeya</option>
+                                                <option value="Arusha">Arusha</option>
+                                                <option value="Tanga">Tanga</option>
+                                                <option value="Kasulu">Kasulu</option>
+                                                <option value="Dodoma">Dodoma</option>
+                                                <option value="Morogoro">Morogoro</option>
+                                                <option value="Zanzibar">Zanzibar</option>
+                                                <option value="Tabora">Tabora</option>
+                                                <option value="Bariadi">Bariadi</option>
+                                                <option value="Iringa">Iringa</option>
+                                                <option value="Singida">Singida</option>
+                                                <option value="Sumbawanga">Sumbawanga</option>
+                                                <option value="Moshi">Moshi</option>
+                                                <option value="Kigoma">Kigoma</option>
+                                                <option value="Bukoba">Bukoba</option>
+                                                <option value="Kibaha">Kibaha</option>
+                                                <option value="Tukuyu">Tukuyu</option>
+                                                <option value="Shinyanga">Shinyanga</option>
+                                                <option value="Musoma">Musoma</option>
+                                                <option value="Songea">Songea</option>
+                                                <option value="Geita">Geita</option>
+                                                <option value="Mtwara">Mtwara</option>
+                                                <option value="Kilosa">Kilosa</option>
+                                                <option value="Mpanda">Mpanda</option>
+                                                <option value="Handeni">Handeni</option>
+                                                <option value="Chake Chake">Chake Chake</option>
+                                                <option value="Njombe">Njombe</option>
+                                                <option value="Lindi">Lindi</option>
+                                                <option value="Tunduma">Tunduma</option>
+                                                <option value="Masasi">Masasi</option>
+                                                <option value="Kahama">Kahama</option>
+                                                <option value="Nzega">Nzega</option>
+                                                <option value="Biharamulo">Biharamulo</option>
+                                                <option value="Babati">Babati</option>
+                                                <option value="Chato">Chato</option>
+                                                <option value="Wete">Wete</option>
+                                                <option value="Mkokotoni">Mkokotoni</option>
+                                                <option value="Mahonda">Mahonda</option>
+                                                <option value="Vwawa">Vwawa</option>
+                                                <option value="Koani">Koani</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

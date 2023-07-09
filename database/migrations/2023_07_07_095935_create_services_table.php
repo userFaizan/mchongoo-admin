@@ -22,11 +22,14 @@ class CreateServicesTable extends Migration
             $table->string('experience')->nullable();
             $table->string('service_type')->nullable();
             $table->string('address')->nullable();
+            $table->string('city')->nullable();
             $table->string('service_price')->nullable();
             $table->float('rating')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
-
+            $table->boolean('recommended')->default(false);
+            $table->boolean('trending')->default(false);
+            $table->bigInteger('view_count')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

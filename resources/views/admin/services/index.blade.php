@@ -41,12 +41,15 @@
                                     <th>Gender</th>
                                     <th>Experience</th>
                                     <th>Service Type</th>
+                                    <th>City</th>
                                     <th>Address</th>
                                     <th>Service Price</th>
                                     <th>Rating</th>
                                     <th>Latitude</th>
                                     <th>Longitude</th>
                                     <th>Images</th>
+                                    <th>Is Recommended</th>
+                                    <th>Is Trending</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -62,6 +65,7 @@
                                         <td>{{$item->gender}}</td>
                                         <td>{{$item->experience}}</td>
                                         <td>{{$item->service_type}}</td>
+                                        <td>{{$item->city}}</td>
                                         <td>{{$item->address}}</td>
                                         <td>{{$item->service_price}}</td>
                                         <td>{{$item->rating}}</td>
@@ -79,7 +83,18 @@
                                                 @endif
                                             </td>
                                         @endforeach
-
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" class="toggle-class-3" data-id="{{ $item->id }}" {{ $item->recommended ? 'checked' : '' }}>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox" class="toggle-class-4" data-id="{{ $item->id }}" {{ $item->trending ? 'checked' : '' }}>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
 
                                         <td>
                                             <a class="btn btn-primary" href="{{ route('services.edit',$item->id) }}">Edit</a>

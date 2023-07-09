@@ -43,6 +43,7 @@ class ServiceController extends Controller
             'experience' => $request->experience,
             'service_type' => $request->service_type,
             'address' => $request->address,
+            'city' => $request->city,
             'service_price' => $request->service_price,
             'rating' => $request->rating,
             'lat' => $request->lat,
@@ -96,6 +97,7 @@ class ServiceController extends Controller
         $service->experience = $request->experience;
         $service->service_type = $request->service_type;
         $service->address = $request->address;
+        $service->city = $request->city;
         $service->service_price = $request->service_price;
         $service->rating = $request->rating;
         $service->lat = $request->lat;
@@ -134,5 +136,21 @@ class ServiceController extends Controller
         $services->delete();
         return redirect()->route('services.index');
         // Perform any additional logic or delete the interest record
+    }
+    public function changeRecommendedStatus(Request $request)
+    {
+        $service = Service::find($request->service_id);
+        $service->recommended = $request->recommended;
+        $service->save();
+
+        return response()->json(['success'=>'Recommended Status change successfully.']);
+    }
+    public function changeTrendingStatus(Request $request)
+    {
+        $service = Service::find($request->service_id);
+        $service->trending = $request->trending;
+        $service->save();
+
+        return response()->json(['success'=>'Trending Status change successfully.']);
     }
 }

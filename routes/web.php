@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function () {
         Route::get('{id}/edit', [ServiceController::class, 'edit'])->name('edit');
         Route::post('{id}/edit', [ServiceController::class, 'update'])->name('update');
         Route::get('{id}/delete', [ServiceController::class, 'delete'])->name('delete');
+        Route::get('changeRecommendedStatus', [ServiceController::class,'changeRecommendedStatus'])->name('changeRecommendedStatus');
+        Route::get('changeTrendingStatus', [ServiceController::class,'changeTrendingStatus'])->name('changeTrendingStatus');
+
     });
     Route::prefix('/plans/')->as('plans.')->group(function () {
         Route::get('', [PlanController::class, 'index'])->name('index');

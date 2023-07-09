@@ -11,7 +11,7 @@ use App\Repositories\CategoryRepository;
 
 class CategoryController extends ApiBaseController
 {
-    protected CategoryRepository $intrestRepository;
+    protected CategoryRepository $categoryRepository;
 
     public function __construct(CategoryRepository $categoryRepository)
     {

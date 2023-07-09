@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\InterestController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,11 @@ Route::middleware('auth:api')->group(function () {
     Route::get('interest',[InterestController::class,'getInterest']);
     Route::post('interest',[InterestController::class,'storeInterest']);
     Route::get('category',[CategoryController::class,'getCategory']);
+    Route::get('service',[ServiceController::class,'getService']);
+    Route::get('single/service/{id}',[ServiceController::class,'getSingleService']);
+    Route::post('favouriteService',[ServiceController::class,'favouriteService']);
+    Route::get('favouriteService',[ServiceController::class,'getFavouriteService']);
+
 
 
 

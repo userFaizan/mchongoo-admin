@@ -54,10 +54,14 @@ class Service extends Model
         'experience',
         'service_type',
         'address',
+        'city',
         'service_price',
         'rating',
         'lat',
-        'long'
+        'long',
+        'recommended',
+        'trending' ,
+        'view_count',
     ];
 
     /**
@@ -74,10 +78,15 @@ class Service extends Model
         'experience' => 'string',
         'service_type' => 'string',
         'address' => 'string',
+        'city' => 'string',
         'service_price' => 'string',
         'rating' => 'float',
         'lat' => 'string',
-        'long' => 'string'
+        'long' => 'string',
+        'recommended' => 'boolean',
+        'trending' => 'boolean',
+        'view_count' => 'integer',
+
     ];
 
     /**
@@ -88,15 +97,19 @@ class Service extends Model
     public static $rules = [
         'user_id' => 'required',
         'category_id' => 'required',
-        'name' => 'nullable|string|max:255',
-        'gender' => 'nullable|string|max:255',
-        'experience' => 'nullable|string|max:255',
-        'service_type' => 'nullable|string|max:255',
-        'address' => 'nullable|string|max:255',
-        'service_price' => 'nullable|string|max:255',
+        'name' => 'nullable|string',
+        'gender' => 'nullable|string',
+        'experience' => 'nullable|string',
+        'service_type' => 'nullable|string',
+        'address' => 'nullable|string',
+        'city' => 'nullable|string',
+        'service_price' => 'nullable|string',
         'rating' => 'nullable|numeric',
-        'lat' => 'nullable|string|max:255',
-        'long' => 'nullable|string|max:255',
+        'lat' => 'nullable|string',
+        'long' => 'nullable|string',
+        'recommended' => 'boolean',
+        'trending' => 'boolean',
+        'view_count' => 'integer',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
@@ -140,5 +153,13 @@ class Service extends Model
     public function servicesImages(): HasMany
     {
         return $this->hasMany(ServiceImage::class, 'service_id');
+    }
+
+    public static function withinRadius($latitude, $longitude, $radius = 2)
+    {
+        $earthRadius = 6371; // Radius of the Earth in kilometers
+
+        return static::selectRaw("*, ({$earthRadius} * ACOS(COS(RADIANS(?)) * COS(RADIANS(lat)) * COS(RADIANS(`long`) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(lat)))) AS distance")
+            ->whereRaw("{$earthRadius} * ACOS(COS(RADIANS(?)) * COS(RADIANS(lat)) * COS(RADIANS(`long`) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(lat))) <= ?", [$latitude, $longitude, $latitude, $latitude, $longitude, $latitude, $radius]);
     }
 }

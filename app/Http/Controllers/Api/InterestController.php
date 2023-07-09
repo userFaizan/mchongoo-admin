@@ -32,7 +32,7 @@ class InterestController extends ApiBaseController
             foreach ($interests as $interest) {
                 $data[] = [
                     'id' => $interest->id,
-                    'icon' => $interest->icon,
+                    'icon' => "interestImages/".$interest->icon,
                     'name' => $interest->name,
                     'slug' => $interest->slug,
                     'status' => $interest->status,

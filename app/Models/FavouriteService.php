@@ -58,7 +58,6 @@ class FavouriteService extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required',
         'service_id' => 'required',
         'is_favorite' => 'required|boolean',
         'created_at' => 'nullable',
