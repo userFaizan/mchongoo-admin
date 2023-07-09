@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IntrestController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\PlanController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +59,14 @@ Route::middleware('auth')->group(function () {
         Route::get('{id}/edit', [ServiceController::class, 'edit'])->name('edit');
         Route::post('{id}/edit', [ServiceController::class, 'update'])->name('update');
         Route::get('{id}/delete', [ServiceController::class, 'delete'])->name('delete');
+    });
+    Route::prefix('/plans/')->as('plans.')->group(function () {
+        Route::get('', [PlanController::class, 'index'])->name('index');
+        Route::get('/create', [PlanController::class, 'create'])->name('create');
+        Route::post('/store', [PlanController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [PlanController::class, 'edit'])->name('edit');
+        Route::post('{id}/edit', [PlanController::class, 'update'])->name('update');
+        Route::get('{id}/delete', [PlanController::class, 'delete'])->name('delete');
     });
 });
 require __DIR__.'/auth.php';

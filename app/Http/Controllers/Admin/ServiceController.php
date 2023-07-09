@@ -77,7 +77,6 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         return view('admin.services.edit',compact('users','service','categories'));
 
-//        return view('admin.services.edit',compact('users ','services','categoies'));
 
     }
     public function update(Request $request, $id)

@@ -58,8 +58,8 @@ class Plan extends Model
      */
     public static $rules = [
         'service_id' => 'required',
-        'plan_amount' => 'nullable|string|max:255',
-        'plan_duration' => 'nullable|string|max:255',
+        'plan_amount' => 'nullable|string',
+        'plan_duration' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

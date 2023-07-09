@@ -30,14 +30,6 @@
                     <li><a href="{{route('skill.create')}}">Add Skills</a></li>
                 </ul>
             </li>
-{{--            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder"></i><span>File Manager</span></a>--}}
-{{--                <ul class="ml-menu">--}}
-{{--                    <li><a href="file-dashboard.html">All File</a></li>--}}
-{{--                    <li><a href="file-documents.html">Documents</a></li>--}}
-{{--                    <li><a href="file-images.html">Images</a></li>--}}
-{{--                    <li><a href="file-media.html">Media</a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
             <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Categories</span></a>
                 <ul class="ml-menu">
                     <li><a href="{{route('category.index')}}">Categories List</a></li>
@@ -50,6 +42,12 @@
                     <li><a href="{{route('services.create')}}">Add Service</a></li>
                 </ul>
             </li>
+                        <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder"></i><span>Plans</span></a>
+                            <ul class="ml-menu">
+                                <li><a href="{{route('plans.index')}}">Plans List</a></li>
+                                <li><a href="{{route('plans.create')}}">Add Plan</a></li>
+                            </ul>
+                        </li>
 {{--            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>Components</span></a>--}}
 {{--                <ul class="ml-menu">--}}
 {{--                    <li><a href="ui_kit.html">Aero UI KIT</a></li>--}}

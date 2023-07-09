@@ -55,7 +55,7 @@ class ServiceImage extends Model
      */
     public static $rules = [
         'service_id' => 'required',
-        'images' => 'nullable|string|max:255',
+        'images' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
