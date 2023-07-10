@@ -26,23 +26,23 @@ class ServiceController extends ApiBaseController
     public function getService(Request $request)
     {
 
-//        try {
+        try {
             $limit = $request->input('limit', 10);
             $page = $request->input('offset', 0);
             $queryParam = $request->input('serviceParam');
             if ($queryParam === null) {
                 $data = Service::with('user', 'servicesImages', 'plansAndPackages')->limit($limit)->offset(($page - 1) * $limit)->get();
             }
-            if ($queryParam === 'Recommended') {
+            elseif ($queryParam === 'Recommended') {
                 $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('recommended', true)->limit($limit)->offset(($page - 1) * $limit)->get();
             }
-            if ($queryParam === 'Trending') {
+            elseif ($queryParam === 'Trending') {
                 $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('trending', true)->limit($limit)->offset(($page - 1) * $limit)->get();
             }
-            if ($queryParam === 'MostViewed') {
+            elseif ($queryParam === 'MostViewed') {
                 $data = Service::with('user', 'servicesImages', 'plansAndPackages')->orderBy('view_count', 'desc')->limit($limit)->offset(($page - 1) * $limit)->get();
             }
-            if ($queryParam === "Location"){
+            elseif ($queryParam === "Location"){
                 $radius = 200; // Radius in kilometers
                 $latitude = $request->input('latitude');
                 $longitude = $request->input('longitude');
@@ -50,13 +50,16 @@ class ServiceController extends ApiBaseController
                     ->with('user', 'servicesImages', 'plansAndPackages')
                     ->get();
             }
+            else {
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('city', 'LIKE', '%'.$queryParam.'%')->limit($limit)->offset(($page - 1) * $limit)->get();
+            }
             return $this->sendResponse($data, "");
 
-//        } catch (Exception $e) {
-//            // Handle the exception
-//            return $this->sendError('Error occurred during process.', [], 404);
-//
-//        }
+        } catch (Exception $e) {
+            // Handle the exception
+            return $this->sendError('Error occurred during process.', [], 404);
+
+        }
     }
 
     public function getSingleService(Request $request, $id)
