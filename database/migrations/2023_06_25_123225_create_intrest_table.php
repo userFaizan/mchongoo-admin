@@ -15,6 +15,7 @@ class CreateIntrestTable extends Migration
     {
         Schema::create('intrest', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->references('id')->on('categories');
             $table->string('icon')->nullable();
             $table->string('name');
             $table->string('slug')->nullable()->unique();

@@ -66,5 +66,8 @@ class Category extends Model
         'deleted_at' => 'nullable'
     ];
 
-    
+    public function interest(): HasMany
+    {
+        return $this->hasMany(Intrest::class, 'category_id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Intrest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,8 +19,8 @@ class IntrestController extends Controller
     }
     public function create()
     {
-        // Return the view for creating a new interest
-        return view('admin.intrest.create');
+        $categories = Category::all();
+        return view('admin.intrest.create',compact('categories'));
     }
     public function store(Request $request)
     {
@@ -31,6 +32,8 @@ class IntrestController extends Controller
         }
 
         $data = [
+
+            'category_id' => $request->category_id,
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-')
         ];
@@ -49,7 +52,8 @@ class IntrestController extends Controller
     public function edit($id)
     {
         $intrest = Intrest::findOrFail($id);
-        return view('admin.intrest.edit',compact('intrest'));
+        $categories = Category::all();
+        return view('admin.intrest.edit',compact('intrest','categories'));
 
     }
     public function update(Request $request, $id)
@@ -61,6 +65,7 @@ class IntrestController extends Controller
         }
         $intrest = Intrest::findOrFail($id);
 //        $intrest->icon = $request->icon;
+        $intrest->category_id = $request->category_id;
         $intrest->name = $request->name;
         if ($request->hasFile('icon')) {
             $image = $request->file('icon');

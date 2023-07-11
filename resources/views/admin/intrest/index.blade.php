@@ -31,6 +31,7 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="myTable">
                                 <thead>
                                 <tr>
+                                    <th>Category Name</th>
                                     <th>Name</th>
                                     <th>slug</th>
                                     <th>Icon</th>
@@ -44,6 +45,7 @@
                                 @foreach($intrest as $item)
 
                                     <tr>
+                                        <td>{{$item->category->name }}</td>
                                         <td>{{$item->name }}</td>
                                         <td>{{$item->slug}}</td>
                                         <td>  <img src=" {{ asset('storage/interestImages/'. $item->icon) }}" alt="Interest Icon" width="50" height="50"></td>

@@ -245,7 +245,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
                                 <div class="row clearfix">
                                     <div class="col-sm-8 offset-sm-2">
                                         {{-- <div class="checkbox">

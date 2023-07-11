@@ -24,16 +24,16 @@
 {{--                    <li><a href="contact.html">Contact</a></li>--}}
                 </ul>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Skills</span></a>
-                <ul class="ml-menu">
-                    <li><a href="{{route('skill.index')}}">Skills List</a></li>
-                    <li><a href="{{route('skill.create')}}">Add Skills</a></li>
-                </ul>
-            </li>
             <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Categories</span></a>
                 <ul class="ml-menu">
                     <li><a href="{{route('category.index')}}">Categories List</a></li>
                     <li><a href="{{route('category.create')}}">Add Category</a></li>
+                </ul>
+            </li>
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Skills</span></a>
+                <ul class="ml-menu">
+                    <li><a href="{{route('skill.index')}}">Skills List</a></li>
+                    <li><a href="{{route('skill.create')}}">Add Skills</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Services</span></a>

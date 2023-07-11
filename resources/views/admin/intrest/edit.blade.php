@@ -50,6 +50,25 @@
                                 </div>
                             </div>
                             <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                    <label for="name">Select Category</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <select name="category_id" id="category_id"
+                                                    class="form-control show-tick ms " aria-describedby="category"
+                                                    required>
+                                                <option value="" selected>Select Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}" {{ $category->id === $service->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
                                 <div class="col-sm-8 offset-sm-2">
                                     <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Submit</button>
                                 </div>

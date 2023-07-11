@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,6 +36,7 @@ class Intrest extends Model
 
     public $fillable = [
         'icon',
+        'category_id',
         'name',
         'slug',
         'status'
@@ -47,6 +49,7 @@ class Intrest extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'category_id' => 'integer',
         'icon' => 'string',
         'name' => 'string',
         'slug' => 'string',
@@ -59,6 +62,7 @@ class Intrest extends Model
      * @var array
      */
     public static $rules = [
+        'category_id' => 'required',
         'name' => 'required|string|max:255',
         'slug' => 'nullable|string|max:255',
         'created_at' => 'nullable',
@@ -66,8 +70,12 @@ class Intrest extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function users()
+    public function users() :BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+    public function category(): belongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 }
