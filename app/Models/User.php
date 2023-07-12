@@ -111,6 +111,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Intrest::class);
     }
+    public function category()
+    {
+        return $this->belongsToMany(Category::class);
+    }
     public function userKyc()
     {
         return $this->hasMany(UserKYC::class);

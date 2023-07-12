@@ -8,6 +8,7 @@ use App\Models\Intrest;
 use Illuminate\Http\Request;
 use App\Repositories\IntrestRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class InterestController extends ApiBaseController

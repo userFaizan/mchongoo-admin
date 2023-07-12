@@ -3,30 +3,30 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Class UserInterest
+ * Class UserCategory
  * @package App\Models
- * @version June 28, 2023, 6:01 pm UTC
+ * @version July 12, 2023, 7:28 pm UTC
  *
- * @property \App\Models\Intrest $interest
- * @property \App\Models\User $user
+ * @property Category $category
+ * @property User $user
  * @property integer $user_id
- * @property integer $interest_id
+ * @property integer $category_id
  */
-class UserInterest extends Model
+class UserCategory extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'interest_user';
+    public $table = 'category_user';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
-
 
     protected $dates = ['deleted_at'];
 
@@ -34,7 +34,7 @@ class UserInterest extends Model
 
     public $fillable = [
         'user_id',
-        'interest_id'
+        'category_id'
     ];
 
     /**
@@ -45,7 +45,7 @@ class UserInterest extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
-        'interest_id' => 'integer'
+        'category_id' => 'integer'
     ];
 
     /**
@@ -54,24 +54,25 @@ class UserInterest extends Model
      * @var array
      */
     public static $rules = [
-        'interest_id' => 'required',
+        'user_id' => 'required',
+        'category_id' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
-    public function interest()
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Intrest::class, 'interest_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
-    public function user()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
