@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends ApiBaseController
 {
+    public const ITEM_COUNT = 30;
+
     protected ServiceRepository $intrestRepository;
 
     public function __construct(ServiceRepository $serviceRepository)
@@ -54,6 +56,20 @@ class ServiceController extends ApiBaseController
                 $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('city', 'LIKE', '%'.$queryParam.'%')->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             return $this->sendResponse($data, "");
+
+        } catch (Exception $e) {
+            // Handle the exception
+            return $this->sendError('Error occurred during process.', [], 404);
+
+        }
+    }
+
+    public function searchService(Request $request)
+    {
+        try {
+        $filters= $request->only('name','experience','service_type','city');
+        $services = $this->ServiceRepository->findByFilters($filters , [] , [] , new Service())->paginate(self::ITEM_COUNT);
+            return $this->sendResponse($services, "");
 
         } catch (Exception $e) {
             // Handle the exception

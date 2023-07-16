@@ -36,6 +36,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('interest',[InterestController::class,'storeInterest']);
     Route::get('category',[CategoryController::class,'getCategory']);
     Route::post('category',[CategoryController::class,'storeCategory']);
+    Route::get('search/service',[ServiceController::class,'searchService']);
     Route::get('service',[ServiceController::class,'getService']);
     Route::get('single/service/{id}',[ServiceController::class,'getSingleService']);
     Route::post('favouriteService',[ServiceController::class,'favouriteService']);

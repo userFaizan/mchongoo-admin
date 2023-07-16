@@ -20,6 +20,7 @@ class ServiceRepository extends BaseRepository
         'user_id',
         'category_id',
         'name',
+        'city',
         'gender',
         'experience',
         'service_type',
