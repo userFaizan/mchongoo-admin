@@ -33,27 +33,27 @@ class ServiceController extends ApiBaseController
             $page = $request->input('offset', 0);
             $queryParam = $request->input('serviceParam');
             if ($queryParam === null) {
-                $data = Service::with('user', 'servicesImages', 'plansAndPackages')->limit($limit)->offset(($page - 1) * $limit)->get();
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             elseif ($queryParam === 'Recommended') {
-                $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('recommended', true)->limit($limit)->offset(($page - 1) * $limit)->get();
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->where('recommended', true)->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             elseif ($queryParam === 'Trending') {
-                $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('trending', true)->limit($limit)->offset(($page - 1) * $limit)->get();
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->where('trending', true)->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             elseif ($queryParam === 'MostViewed') {
-                $data = Service::with('user', 'servicesImages', 'plansAndPackages')->orderBy('view_count', 'desc')->limit($limit)->offset(($page - 1) * $limit)->get();
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->orderBy('view_count', 'desc')->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             elseif ($queryParam === "Location"){
                 $radius = 200; // Radius in kilometers
                 $latitude = $request->input('latitude');
                 $longitude = $request->input('longitude');
                 $data = Service::withinRadius($latitude, $longitude, $radius)
-                    ->with('user', 'servicesImages', 'plansAndPackages')
+                    ->with('user', 'servicesImages', 'plansAndPackages','favouriteServices')
                     ->get();
             }
             else {
-                $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('city', 'LIKE', '%'.$queryParam.'%')->limit($limit)->offset(($page - 1) * $limit)->get();
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->where('city', 'LIKE', '%'.$queryParam.'%')->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             return $this->sendResponse($data, "");
 
@@ -83,7 +83,7 @@ class ServiceController extends ApiBaseController
         try {
             $limit = $request->input('limit', 10);
             $page = $request->input('offset', 0);
-            $data = Service::with('user', 'servicesImages', 'plansAndPackages')->where('id', $id)->limit($limit)->offset(($page - 1) * $limit)->first();
+            $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->where('id', $id)->limit($limit)->offset(($page - 1) * $limit)->first();
             $data->increment('view_count');
             return $this->sendResponse($data, "");
         } catch (Exception $e) {
