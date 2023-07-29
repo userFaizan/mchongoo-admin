@@ -125,7 +125,7 @@ class ServiceController extends ApiBaseController
         try {
             $limit = $request->input('limit', 10);
             $page = $request->input('offset', 0);
-            $data = FavouriteService::with('user', 'service')->limit($limit)->offset(($page - 1) * $limit)->get();
+            $data = FavouriteService::with('user', 'service','service.servicesImages')->limit($limit)->offset(($page - 1) * $limit)->get();
             return $this->sendResponse($data, "");
 
         } catch (Exception $e) {

@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $validation = Validator::make($request->all(), Category::$rules);
 
         if ($validation->fails()) {
-            return response($validation->errors()->first() , 419);
+            return redirect()->back()->withErrors($validation)->withInput();
         }
         $data = [
             'name' => $request->name,

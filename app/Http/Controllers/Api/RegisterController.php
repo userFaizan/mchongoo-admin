@@ -64,6 +64,7 @@ class RegisterController extends ApiBaseController
                 return $this->sendError('Unauthorised.', ['error' => 'OTP not verified.'],404);
             }
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            $success['id'] = $user->id;
             $success['first_name'] = $user->first_name;
             $success['last_name'] = $user->last_name;
             $success['username'] = $user->username;

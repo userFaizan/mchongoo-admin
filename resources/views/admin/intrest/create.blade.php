@@ -26,6 +26,15 @@
                         <h2><strong>Add</strong> Skills</h2>
                     </div>
                     <div class="body">
+                        @if ($errors->any())
+                            <div class="general-error-message">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form id="ajax-request" method="post" action="{{route('skill.store')}}" enctype="multipart/form-data" class="" data-redirect-url="{{ route('skill.index') }}">
                             @csrf
                             <div class="row clearfix">

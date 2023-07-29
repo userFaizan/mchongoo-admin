@@ -61,7 +61,7 @@
                                                     required>
                                                 <option value="" selected>Select Category</option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}" {{ $category->id === $service->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" {{ $category->id === $intrest->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
