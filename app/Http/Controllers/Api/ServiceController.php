@@ -53,7 +53,11 @@ class ServiceController extends ApiBaseController
                     ->get();
             }
             else {
-                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->where('city', 'LIKE', '%'.$queryParam.'%')->limit($limit)->offset(($page - 1) * $limit)->get();
+                $data = Service::with('user', 'servicesImages', 'plansAndPackages','favouriteServices')->where('city', 'LIKE', '%'.$queryParam.'%')
+                    ->orWhere('name', 'LIKE', '%'.$queryParam.'%')
+                    ->orWhere('experience', 'LIKE', '%'.$queryParam.'%')
+                    ->orWhere('service_type', 'LIKE', '%'.$queryParam.'%')
+                    ->limit($limit)->offset(($page - 1) * $limit)->get();
             }
             return $this->sendResponse($data, "");
 
@@ -116,7 +120,7 @@ class ServiceController extends ApiBaseController
             }
         } catch (Exception $e) {
             // Handle the exception
-            return $this->sendError('Error occurred during resendOtp.', [], 404);
+            return $this->sendError('Error occurred during process.', [], 404);
         }
     }
 
@@ -130,7 +134,7 @@ class ServiceController extends ApiBaseController
 
         } catch (Exception $e) {
             // Handle the exception
-            return $this->sendError('Error occurred during resendOtp.', [], 404);
+            return $this->sendError('Error occurred during process.', [], 404);
         }
     }
 }

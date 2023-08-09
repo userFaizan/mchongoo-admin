@@ -119,4 +119,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserKYC::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
 }

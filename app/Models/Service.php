@@ -154,6 +154,13 @@ class Service extends Model
     {
         return $this->hasMany(ServiceImage::class, 'service_id');
     }
+    /**
+     * @return HasMany
+     **/
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Orders::class);
+    }
 
     public static function withinRadius($latitude, $longitude, $radius = 2)
     {

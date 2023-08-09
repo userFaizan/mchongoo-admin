@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\InterestController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\ServiceController;
 use Illuminate\Http\Request;
@@ -41,7 +42,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('single/service/{id}',[ServiceController::class,'getSingleService']);
     Route::post('favouriteService',[ServiceController::class,'favouriteService']);
     Route::get('favouriteService',[ServiceController::class,'getFavouriteService']);
-
+    Route::post('create/orders',[OrderController::class,'storeOrders']);
+    Route::get('user/cart',[OrderController::class,'getUserCart']);
+    Route::get('delete/cart/item/{id}',[OrderController::class,'deleteCartItem']);
 
 
 

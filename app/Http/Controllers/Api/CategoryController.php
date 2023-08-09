@@ -50,15 +50,15 @@ class CategoryController extends ApiBaseController
     }
     public function storeCategory(Request $request): JsonResponse
     {
-//        try {
+        try {
             $user = Auth::user();
             $categoriesIds = $request->input('categories', []);
             $user->category()->sync($categoriesIds);
             return $this->sendResponse([], "Categories Post succesfully with Logged In User");
-//        } catch (Exception $e) {
-//            // Handle the exception
-//            return $this->sendError('Error occurred during the Process.', [], 404);
-//        }
+        } catch (Exception $e) {
+            // Handle the exception
+            return $this->sendError('Error occurred during the Process.', [], 404);
+        }
 
     }
 }
